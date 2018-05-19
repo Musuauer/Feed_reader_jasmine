@@ -20,6 +20,7 @@ $(function() {
 			expect(allFeeds.length).not.toBe(0);
 		});
 
+        //two functions to be runned under a for loop itinerating through allFeeds
 		function checkURL(feed) {
 			it ('has a URL', function() {
 				expect(feed.url).toBeDefined();
@@ -40,15 +41,18 @@ $(function() {
 		}
 	});
 
+
 	describe('The menu', function() {
 		const body = $('body');
 		const menuIcon = $('.menu-icon-link');
 
 		it('is hidden', function() {
+            //check if the body has that class
 			expect(body.hasClass('menu-hidden')).toBe(true);
 		});
 
 		it('changes visibility if clicked', function() {
+            //using click() from jQuery
 			menuIcon.click();
 			expect(body.hasClass('menu-hidden')).toBe(false);
             
@@ -72,6 +76,7 @@ $(function() {
 		});
 
 		it('there is at least one entry',function() {
+            //check if there are elements in the DOM with a class .entry, if there are it passes the test
             var entries = $('.entry').length;
 			expect(entries).not.toBe(0);
 
@@ -84,8 +89,10 @@ $(function() {
     describe('New Feed Selection', function() {
 
 		beforeEach(function(done){
+            // first feed
 			loadFeed(0, function(){
                 title1 = $(".entry h2").html(); 
+            // second feed
                 loadFeed(1, function() {
                     done(); 
                 });
